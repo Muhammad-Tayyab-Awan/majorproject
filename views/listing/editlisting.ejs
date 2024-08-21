@@ -1,0 +1,137 @@
+<%- layout('/layouts/boilerplate') %>
+<body>
+  <div class="row">
+    <div class="col col-8 offset-2">
+      <h2>Edit Listing</h2>
+      <br />
+      <form
+        action="/listing/<%= editListing._id %>?_method=PUT"
+        method="post"
+        novalidate
+        class="needs-validation"
+        enctype="multipart/form-data"
+      >
+        <div class="form-floating mb-3">
+          <input
+            autofocus
+            type="text"
+            name="listing[title]"
+            required
+            id="title"
+            placeholder="Enter Title Here"
+            class="form-control"
+            value="<%= editListing.title %>"
+          />
+          <label for="title" class="form-label">Title</label>
+          <div class="valid-feedback">Title looks good!</div>
+          <div class="invalid-feedback">Title should be valid</div>
+        </div>
+        <div class="form-floating mb-3">
+          <textarea
+            name="listing[description]"
+            id="description"
+            class="form-control"
+            placeholder="Enter Description Here"
+            required
+            autofocus
+          >
+          <%=editListing.description%></textarea
+          >
+          <label for="description" class="form-label">Description</label>
+          <div class="valid-feedback">Description looks good!</div>
+          <div class="invalid-feedback">Description should be valid</div>
+        </div>
+        <div class="mb-3">
+          <img
+            class="img-fluid rounded"
+            src="<%= editListing.image.url %>"
+            alt="<%= editListing.image.filename %>"
+          />
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="file"
+            name="listing[image]"
+            accept=".jpg, .jpeg, .png"
+            id="image-file"
+            class="form-control"
+            autofocus
+          />
+          <label for="image-file" class="form-label">Upload New Image</label>
+          <div class="valid-feedback">Image looks good!</div>
+          <div class="invalid-feedback">Image should be valid</div>
+        </div>
+        <div class="row">
+          <div class="mb-3 col-md-4">
+            <div class="form-floating">
+              <input
+                type="number"
+                name="listing[price]"
+                placeholder="Enter Price Here"
+                id="price"
+                class="form-control"
+                value="<%= editListing.price %>"
+                required
+                autofocus
+              />
+              <label for="price" class="form-label">Price</label>
+              <div class="valid-feedback">Price looks good!</div>
+              <div class="invalid-feedback">Price should be valid</div>
+            </div>
+          </div>
+          <div class="mb-3 col-md-4">
+            <div class="form-floating">
+              <select
+                autofocus
+                autocomplete="country-name"
+                name="listing[country]"
+                id="country"
+                class="addCountryEvent form-select"
+                required
+              >
+                <% for (const key in countries) { if(countries[key].name ===
+                editListing.country ) {%>
+                <option value="<%= countries[key].name %>" selected>
+                  <%= countries[key].name %>
+                </option>
+                <% } else{%>
+                <option value="<%= countries[key].name %>">
+                  <%= countries[key].name %>
+                </option>
+                <% } %> <% } %>
+              </select>
+              <label for="country" class="form-label">Country</label>
+              <div class="valid-feedback">Country looks good!</div>
+              <div class="invalid-feedback">Country should be valid</div>
+            </div>
+          </div>
+          <div class="mb-3 col-md-4">
+            <div class="form-floating">
+              <select
+                autofocus
+                autocomplete="address-line1"
+                name="listing[location]"
+                id="location"
+                class="form-select"
+                required
+              >
+                <% for (const key in countries) { if(countries[key].name ===
+                editListing.country ) { for (const city of
+                countries[key].cities) { if(city === editListing.location){ %>
+                <option value="<%= city %>" selected><%= city %></option>
+                <% } else { %>
+                <option value="<%= city %>"><%= city %></option>
+                <% } } }}%>
+              </select>
+              <label for="location" class="form-label">Location</label>
+            </div>
+          </div>
+        </div>
+        <br />
+        <button type="submit" class="btn btn-dark">Edit</button>
+      </form>
+    </div>
+  </div>
+  <br />
+  <script src="/js/locationEvent.js"></script>
+</body>

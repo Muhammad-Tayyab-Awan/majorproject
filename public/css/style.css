@@ -1,0 +1,268 @@
+/* body styling */
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.container {
+  flex: 1;
+}
+
+/* body styling */
+
+/* navbar styling */
+.navbar {
+  height: 5rem;
+  background-color: #38c7ff;
+}
+
+.fa-compass {
+  font-size: 2rem;
+  color: #ff385c;
+}
+
+.account-nav .nav-link {
+  color: black !important;
+  font-weight: bold !important;
+}
+
+.account-nav .btn.nav-link.rounded-pill {
+  color: white !important;
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+}
+
+.account-nav .btn.nav-link.rounded-pill:hover {
+  background-color: #ff385c !important;
+  color: black !important;
+}
+
+.search-form input {
+  text-align: center;
+  border-color: #ff385c;
+  color: #ff385c !important;
+}
+
+.search-form input:focus {
+  border-color: rgb(255, 56, 92) !important;
+  outline: 0 !important;
+  box-shadow: 0 0 0 0.25rem rgb(255, 56, 92, 0.25) !important;
+}
+
+.search-form button {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 5px;
+  align-items: center;
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+}
+
+.search-form:hover button {
+  background-color: #ff385c;
+  color: white;
+}
+
+/* navbar styling */
+
+/* footer styling */
+.footer {
+  background-color: rgb(238, 154, 154);
+  display: flex;
+  align-items: center;
+  color: black;
+  flex-wrap: wrap;
+  font-size: 1.25rem;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  margin: 0.5rem;
+  margin-top: 1rem;
+}
+
+.copyright {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0.5rem;
+}
+
+.f-link {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  align-items: center;
+  width: 100%;
+  margin: 0.5rem;
+  margin-top: 1rem;
+}
+
+.f-link a {
+  color: black;
+  text-decoration: none;
+}
+
+.f-link a:hover {
+  text-decoration: underline;
+}
+
+/* footer styling */
+
+/* styling for listing card */
+.listing-card {
+  border: none;
+  margin-bottom: 2rem;
+}
+
+.card-img-top {
+  border-radius: 1rem;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-img-top:hover {
+  opacity: 0.75;
+}
+
+.card-body {
+  padding: 0;
+}
+
+.row a {
+  text-decoration: none;
+}
+
+/* styling for listing card */
+
+/* styling for button (delete,edit and others) */
+.btn {
+  background-color: #ff385c;
+  color: white;
+  font-weight: bold;
+  border: none;
+}
+
+.btns,
+.btns .col {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+}
+
+.delete-btn {
+  background-color: black;
+}
+
+/* styling for button (delete,edit and others) */
+
+/* styling for map box */
+#map {
+  width: 100%;
+  height: 400px;
+}
+
+/* styling for map box */
+
+/* styling for filter carousel */
+.carousel-control-prev {
+  justify-content: start !important;
+  opacity: 1 !important;
+}
+
+.carousel-control-next {
+  justify-content: end !important;
+  opacity: 1 !important;
+}
+
+.carousel-control-prev-icon {
+  border-radius: 100% !important;
+  background-position: center !important;
+  background-color: black;
+}
+
+.carousel-control-next-icon {
+  border-radius: 100% !important;
+  background-position: center !important;
+  background-color: black;
+}
+
+.carousel-item .col:hover {
+  opacity: 0.75;
+}
+
+#carouselExampleRide h4 i,
+#carouselExampleRide h6 {
+  color: #ff385c;
+  cursor: pointer;
+}
+
+/* styling for filter carousel */
+
+/* styling for tax-switch button */
+.disable {
+  display: none !important;
+}
+
+.tax-switch-container {
+  justify-content: center;
+  align-items: center;
+}
+
+.tax-switch {
+  height: 3.5rem;
+  width: 100%;
+  gap: 2px;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0 !important;
+  border: 1px solid #ff385c;
+}
+
+.tax-switch input {
+  margin: 0% !important;
+}
+
+.tax-switch .form-check-input {
+  background-color: black;
+  border-color: black;
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+}
+
+.tax-switch .form-check-input:checked {
+  background-color: #ff385c;
+  border-color: #ff385c;
+}
+
+.tax-switch .form-check-input:focus {
+  border-color: rgb(255, 56, 92) !important;
+  outline: 0 !important;
+  box-shadow: 0 0 0 0.25rem rgb(255, 56, 92, 0.25) !important;
+}
+
+/* styling for tax-switch button */
+
+/* styling for forms */
+.needs-validation input,
+.needs-validation textarea,
+.needs-validation select {
+  border-radius: 1.75rem;
+}
+
+.needs-validation input:focus,
+.needs-validation textarea:focus,
+.needs-validation select:focus {
+  border-color: rgb(255, 56, 92) !important;
+  outline: 0 !important;
+  box-shadow: 0 0 0 0.25rem rgb(255, 56, 92, 0.25) !important;
+}
+
+/* styling for forms */

@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-md bg-body-light sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listing"
+      ><i class="fa-solid fa-compass"></i
+    ></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"> </span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listing">Explore</a>
+      </div>
+      <form class="d-flex search-form ms-auto navbar-nav" role="search">
+        <input
+          class="form-control me-2 rounded-pill"
+          type="search"
+          placeholder="Search Listings"
+          aria-label="Search"
+        />
+        <button class="btn rounded-pill" type="submit">
+          <i class="fa-solid fa-magnifying-glass"></i>Search
+        </button>
+      </form>
+      <div class="navbar-nav ms-auto account-nav">
+        <a class="nav-link" href="/listing/new">Wanderlust your Home</a>
+        <% if (!currUser) { %>
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <a class="btn nav-link rounded-pill me-2" href="/signup">SignUp</a>
+          <a class="btn nav-link rounded-pill" href="/login">LogIn</a>
+        </div>
+        <% } else {%>
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <a class="btn nav-link rounded-pill" href="/logout">LogOut</a>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>

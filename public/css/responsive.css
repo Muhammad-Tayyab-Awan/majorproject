@@ -1,0 +1,29 @@
+@media screen and (max-width: 768px) {
+
+    /* navbar styling */
+    .navbar-expand-md {
+        height: 10%;
+    }
+
+    .navbar-expand-md .rounded-pill.btn {
+        justify-content: center !important;
+        width: 25 !important;
+    }
+
+    .navbar-expand-md input[type="search"] {
+        width: 70% !important;
+    }
+
+    .navbar-expand-md .search-form {
+        justify-content: center !important;
+        flex-direction: row !important;
+    }
+
+    .navbar-nav {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    /* navbar styling */
+}

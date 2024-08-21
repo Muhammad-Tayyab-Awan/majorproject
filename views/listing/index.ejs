@@ -1,0 +1,135 @@
+<%- layout('/layouts/boilerplate') %>
+<body>
+  <div class="container text-center mb-2 mt-2 row">
+    <div
+      id="carouselExampleRide"
+      class="carousel slide col"
+      data-bs-ride="true"
+    >
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="row">
+            <div class="col">
+              <h4><i class="fa-solid fa-snowflake"></i></h4>
+              <h6>Arctic</h6>
+            </div>
+            <div class="col">
+              <h4><i class="fa-solid fa-bed"></i></h4>
+              <h6>Rooms</h6>
+            </div>
+            <div class="col">
+              <h4><i class="fa-solid fa-fire"></i></h4>
+              <h6>Trending</h6>
+            </div>
+            <div class="col">
+              <h4><i class="fa-solid fa-person-swimming"></i></h4>
+              <h6>Pools</h6>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="row">
+            <div class="col">
+              <h4><i class="fa-solid fa-kitchen-set"></i></h4>
+              <h6>Chefs Kitchen</h6>
+            </div>
+            <div class="col">
+              <h4><i class="fa-solid fa-mountain-city"></i></h4>
+              <h6>Mountain City</h6>
+            </div>
+            <div class="col">
+              <h4><i class="fa-brands fa-fort-awesome"></i></h4>
+              <h6>Castles</h6>
+            </div>
+            <div class="col">
+              <h4><i class="fa-solid fa-cow"></i></h4>
+              <h6>Farms</h6>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="row">
+            <div class="col">
+              <h4><i class="fa-solid fa-house"></i></h4>
+              <h6>Houses</h6>
+            </div>
+            <div class="col">
+              <h4><i class="fa-solid fa-umbrella-beach"></i></h4>
+              <h6>Beaches</h6>
+            </div>
+            <div class="col">
+              <h4><i class="fa-solid fa-sailboat"></i></h4>
+              <h6>Boating</h6>
+            </div>
+            <div class="col">
+              <h4><i class="fa-solid fa-tower-observation"></i></h4>
+              <h6>Towers</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleRide"
+        data-bs-slide="prev"
+      >
+        <span
+          class="carousel-control-prev-icon rounded"
+          aria-hidden="true"
+        ></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleRide"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <div class="col col-3 tax-switch-container d-flex">
+      <div class="form-check form-switch tax-switch rounded-pill d-flex">
+        <input
+          class="form-check-input tax-switch-inp"
+          type="checkbox"
+          role="switch"
+          id="flexSwitchCheckDefault"
+        />
+        <label class="form-check-label" for="flexSwitchCheckDefault"
+          >Total Prices After Tax</label
+        >
+      </div>
+    </div>
+  </div>
+  <div class="row"></div>
+  <div
+    class="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1"
+  >
+    <% for(listing of listingDB) { %>
+    <a href="/listing/<%= listing._id %>">
+      <div class="card col listing-card">
+        <img
+          src="<%= listing.image.url %>"
+          class="card-img-top"
+          alt="<%= listing.image.filename %>"
+          style="height: 20rem"
+        />
+        <div class="card-body">
+          <h5 class="card-title"><%= listing.title %></h5>
+          <p class="card-text originalPrice">
+            Rs.<%= listing.price.toLocaleString("en-US") %> / night
+          </p>
+          <p class="card-text taxPrices disable">
+            Rs.<%= (listing.price +
+            (listing.price*10)/100).toLocaleString("en-US") %> / night
+          </p>
+        </div>
+      </div>
+    </a>
+    <% } %>
+  </div>
+  <script src="/js/taxSwitch.js"></script>
+</body>

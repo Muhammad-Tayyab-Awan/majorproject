@@ -1,0 +1,179 @@
+<%- layout('/layouts/boilerplate') %>
+
+<body>
+  <script>
+    const mapToken = "<%- process.env.MAP_TOKEN %>";
+    const listing = <%- JSON.stringify(singleListing) %>;
+  </script>
+  <div class="row mb-3 mt-3">
+    <div class="col col-8 offset-2">
+      <div class="row">
+        <div class="col col-8 offset-2">
+          <div class="card mb-3 listing-card">
+            <img
+              src="<%= singleListing.image.url %>"
+              class="card-img-top"
+              alt="<%= singleListing.image.filename%>"
+              style="height: 15rem"
+            />
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title"><%= singleListing.title %></h5>
+              <p class="card-text mt-2">
+                Owned By : <i> <%= singleListing.owner.username %> </i>
+              </p>
+              <p class="card-text"><%= singleListing.description %></p>
+            </div>
+            <div class="row row-cols-md-3">
+              <p class="card-text">
+                Rs.<%= singleListing.price.toLocaleString("en-US") %> / night
+              </p>
+              <p class="card-text">
+                Location : <b><%= singleListing.location %></b>
+              </p>
+              <p class="card-text">
+                Country : <b><%= singleListing.country %></b>
+              </p>
+            </div>
+            <% if(currUser && currUser._id.equals(singleListing.owner._id)) { %>
+            <div class="row row-cols-2 btns">
+              <div class="col">
+                <a
+                  href="/listing/<%= singleListing._id %>/edit"
+                  class="btn btn-dark"
+                  >Edit</a
+                >
+                <form
+                  action="/listing/<%= singleListing._id %>?_method=DELETE"
+                  method="post"
+                  style="display: inline-block"
+                >
+                  <button type="submit" class="btn btn-dark delete-btn">
+                    Delete
+                  </button>
+                </form>
+              </div>
+            </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% if(currUser) { %>
+  <div class="row mb-3 mt-3">
+    <div class="col col-8 offset-2">
+      <h3>Leave A Comment</h3>
+      <form
+        action="/listing/<%= singleListing._id %>/reviews"
+        method="post"
+        novalidate
+        class="needs-validation"
+      >
+        <div class="mb-3">
+          <label for="rating" class="form-label">Rating</label>
+          <fieldset class="starability-slot">
+            <input
+              type="radio"
+              id="no-rate"
+              class="input-no-rate"
+              name="review[rating]"
+              value="1"
+              checked
+              aria-label="No rating."
+            />
+            <input
+              type="radio"
+              id="first-rate1"
+              name="review[rating]"
+              value="1"
+            />
+            <label for="first-rate1" title="Terrible">1 star</label>
+            <input
+              type="radio"
+              id="first-rate2"
+              name="review[rating]"
+              value="2"
+            />
+            <label for="first-rate2" title="Not good">2 stars</label>
+            <input
+              type="radio"
+              id="first-rate3"
+              name="review[rating]"
+              value="3"
+            />
+            <label for="first-rate3" title="Average">3 stars</label>
+            <input
+              type="radio"
+              id="first-rate4"
+              name="review[rating]"
+              value="4"
+            />
+            <label for="first-rate4" title="Very good">4 stars</label>
+            <input
+              type="radio"
+              id="first-rate5"
+              name="review[rating]"
+              value="5"
+            />
+            <label for="first-rate5" title="Amazing">5 stars</label>
+          </fieldset>
+        </div>
+        <div class="mb-3">
+          <label for="comment" class="form-label">Comment</label>
+          <textarea
+            name="review[comment]"
+            required
+            id="comment"
+            class="form-control"
+            placeholder="Enter Comment Here"
+          ></textarea>
+          <div class="invalid-feedback">Please enter comment for review</div>
+        </div>
+        <div class="mb-3">
+          <button class="btn btn-outline" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <% } %> <% if(singleListing.reviews.length > 0){ %>
+  <div class="row mb-3 mt-3">
+    <div class="col col-8 offset-2">
+      <h3>All Reviews</h3>
+      <div class="row">
+        <% for(review of singleListing.reviews ) { %>
+        <div class="card col-5 mt-3 ms-3">
+          <h5 class="card-title mb-1 mt-1">@<%= review.author.username %></h5>
+          <div class="card-body mb-1 mt-1">
+            <div
+              class="starability-result card-text mb-1 mt-1"
+              data-rating="<%= review.rating %>"
+            ></div>
+            <div class="card-text mb-1 mt-1"><%= review.comment %></div>
+          </div>
+          <% if(currUser && currUser._id.equals(review.author._id)){ %>
+          <form
+            action="/listing/<%= singleListing._id %>/reviews/<%= review._id %>?_method=DELETE"
+            method="post"
+            class="mb-3"
+          >
+            <button class="btn btn-sm delete-btn" type="submit">Delete</button>
+          </form>
+          <% } %>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+  <% } %>
+  <div class="row mb-3 mt-3">
+    <div class="col col-8 offset-2">
+      <h5>Where You Will Be</h5>
+      <div id="map"></div>
+    </div>
+  </div>
+</body>
+<script src="/js/map.js"></script>
